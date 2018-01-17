@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wty521.github.io">
-  <title>hello | 王田宇的个人博客</title>
+  <title>一些关于js | 王田宇的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="你好，这是我的个人博客">
-<meta name="keywords" content="王田宇">
+  <meta name="description" content="应该很乱，随看到就随记录下来吧 [TOC] 1. &amp;gt;&amp;gt;&amp;gt; 无符号右移运算w3c：它将无符号 32 位数的所有数位整体右移。对于正数，无符号右移运算的结果与有符号右移运算一样。而负数则被作为正数来处理。比如 1234var a = 64; console.log(a &amp;gt;&amp;gt;&amp;gt; 5); //因为正是符号位是0，右移5位，空位用0填补 =2var c= -64;cons">
+<meta name="keywords" content="wty,js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hello">
+<meta property="og:title" content="一些关于js">
 <meta property="og:url" content="http://wty521.github.io/2017/10/12/hello/index.html">
 <meta property="og:site_name" content="王田宇的个人博客">
-<meta property="og:description" content="你好，这是我的个人博客">
+<meta property="og:description" content="应该很乱，随看到就随记录下来吧 [TOC] 1. &amp;gt;&amp;gt;&amp;gt; 无符号右移运算w3c：它将无符号 32 位数的所有数位整体右移。对于正数，无符号右移运算的结果与有符号右移运算一样。而负数则被作为正数来处理。比如 1234var a = 64; console.log(a &amp;gt;&amp;gt;&amp;gt; 5); //因为正是符号位是0，右移5位，空位用0填补 =2var c= -64;cons">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-17T08:34:42.000Z">
+<meta property="og:updated_time" content="2018-01-17T03:58:15.383Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hello">
-<meta name="twitter:description" content="你好，这是我的个人博客">
+<meta name="twitter:title" content="一些关于js">
+<meta name="twitter:description" content="应该很乱，随看到就随记录下来吧 [TOC] 1. &amp;gt;&amp;gt;&amp;gt; 无符号右移运算w3c：它将无符号 32 位数的所有数位整体右移。对于正数，无符号右移运算的结果与有符号右移运算一样。而负数则被作为正数来处理。比如 1234var a = 64; console.log(a &amp;gt;&amp;gt;&amp;gt; 5); //因为正是符号位是0，右移5位，空位用0填补 =2var c= -64;cons">
   
   
     <link rel="icon" href="/favicon.png">
@@ -164,7 +164,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      hello
+      一些关于js
     </h1>
   
 
@@ -177,8 +177,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>你好，这是我的个人博客</p>
-
+        <h1 id="应该很乱，随看到就随记录下来吧"><a href="#应该很乱，随看到就随记录下来吧" class="headerlink" title="应该很乱，随看到就随记录下来吧"></a>应该很乱，随看到就随记录下来吧</h1><hr>
+<p>[TOC]</p>
+<h2 id="1-gt-gt-gt-无符号右移运算"><a href="#1-gt-gt-gt-无符号右移运算" class="headerlink" title="1. &gt;&gt;&gt; 无符号右移运算"></a>1. &gt;&gt;&gt; 无符号右移运算</h2><p>w3c：它将无符号 32 位数的所有数位整体右移。对于正数，无符号右移运算的结果与有符号右移运算一样。而负数则被作为正数来处理。比如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">64</span>; </div><div class="line"><span class="built_in">console</span>.log(a &gt;&gt;&gt; <span class="number">5</span>); <span class="comment">//因为正是符号位是0，右移5位，空位用0填补 =2</span></div><div class="line"><span class="keyword">var</span> c= <span class="number">-64</span>;</div><div class="line"><span class="built_in">console</span>.log(c &gt;&gt;&gt; <span class="number">5</span>); <span class="comment">//因为负数符号位为1，右移5位空位用0填补 就变成一个很大的数 =134217726</span></div></pre></td></tr></table></figure>
+<p>理解了 &gt;&gt;&gt; 是啥，再来看下loadsh里对于Array经常出现的操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">length = start &gt; end ? <span class="number">0</span> : ((end - start) &gt;&gt;&gt; <span class="number">0</span>)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>其中 <code>&gt;&gt;&gt;0</code> 是为了确保得到的 Array.length是一个32位无符号整型数字。比如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="number">-1</span> &gt;&gt;&gt; <span class="number">0</span> <span class="comment">// 4294967295</span></div><div class="line"><span class="number">-2</span> &gt;&gt;&gt; <span class="number">0</span> <span class="comment">// 4294967294</span></div><div class="line"><span class="number">0</span> &gt;&gt;&gt; <span class="number">0</span> <span class="comment">// 0</span></div><div class="line"><span class="string">'1'</span> &gt;&gt;&gt; <span class="number">0</span> <span class="comment">// 1</span></div><div class="line"><span class="string">'1x'</span> &gt;&gt;&gt; <span class="number">0</span> <span class="comment">// 0</span></div><div class="line"><span class="literal">null</span> &gt;&gt;&gt; <span class="number">0</span>  <span class="comment">//0</span></div></pre></td></tr></table></figure>
+<p>所以 <code>&gt;&gt;&gt;0</code>可以用来做对要求传入整型的参数进行转换。  在Array.length时 来传参进行判断。</p>
+<h2 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h2>
       
 
       
@@ -212,7 +221,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">王田宇</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">wty</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -327,7 +340,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 王田宇
+    		&copy; 2018 王田宇
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -411,6 +424,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">王田宇</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">wty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
             
             <div class="clearfix"></div>
