@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wty521.github.io">
-  <title>Archives: 2017 | 王田宇的个人博客</title>
+  <title>订阅发布模式 | 王田宇的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="王田宇的个人博客">
-<meta property="og:url" content="http://wty521.github.io/archives/2017/index.html">
+  <meta name="description" content="订阅发布模式 最近再学node相关.. events模块 EventEmitter类 核心就是 事件触发与事件监听功能的封装，还记得react组件通信的时候也有一个订阅发布的实现（不过不推荐),然后我就看到订阅发布者模式.. 定义定义：发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状 态发生改变时，所有依赖于它的对象都将得到通知。在 JavaScript 开发中，我">
+<meta name="keywords" content="wty,js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="订阅发布模式">
+<meta property="og:url" content="http://wty521.github.io/2018/04/11/observer/index.html">
 <meta property="og:site_name" content="王田宇的个人博客">
+<meta property="og:description" content="订阅发布模式 最近再学node相关.. events模块 EventEmitter类 核心就是 事件触发与事件监听功能的封装，还记得react组件通信的时候也有一个订阅发布的实现（不过不推荐),然后我就看到订阅发布者模式.. 定义定义：发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状 态发生改变时，所有依赖于它的对象都将得到通知。在 JavaScript 开发中，我">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-11T10:30:18.235Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王田宇的个人博客">
+<meta name="twitter:title" content="订阅发布模式">
+<meta name="twitter:description" content="订阅发布模式 最近再学node相关.. events模块 EventEmitter类 核心就是 事件触发与事件监听功能的封装，还记得react组件通信的时候也有一个订阅发布的实现（不过不推荐),然后我就看到订阅发布者模式.. 定义定义：发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状 态发生改变时，所有依赖于它的对象都将得到通知。在 JavaScript 开发中，我">
   
   
     <link rel="icon" href="/favicon.png">
@@ -152,36 +157,72 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-observer" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/12/hello/" class="archive-article-date">
-  	<time datetime="2017-10-12T09:36:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/12/hello/">一些关于js</a>
+    <h1 class="article-title" itemprop="name">
+      订阅发布模式
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/04/11/observer/" class="archive-article-date">
+  	<time datetime="2018-04-11T08:25:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="订阅发布模式"><a href="#订阅发布模式" class="headerlink" title="订阅发布模式"></a>订阅发布模式</h1><hr>
+<p>最近再学node相关.. events模块 EventEmitter类 核心就是 事件触发与事件监听功能的封装，还记得react组件通信的时候也有一个订阅发布的实现（不过不推荐),然后我就看到订阅发布者模式..</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>定义：发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状 态发生改变时，所有依赖于它的对象都将得到通知。在 JavaScript 开发中，我们一般用事件模型 来替代传统的发布—订阅模式。</p>
+<h2 id="我们都使用过观察者模式"><a href="#我们都使用过观察者模式" class="headerlink" title="我们都使用过观察者模式"></a>我们都使用过观察者模式</h2><p>如果我们在dom节点绑定过事件，那么就使用过订阅发布者模式。一个简单的例子<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.body.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="string">'click'</span>)</span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br><span class="line"><span class="built_in">document</span>.body.click();</span><br></pre></td></tr></table></figure></p>
+<p>订阅document.body上的click事件，当点击事件发生，就会发布这个消息。<br><a id="more"></a></p>
+<p>可以增加删除订阅者，订阅者的增加删除 不会影响到发布者的操作代码；<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.body.addEventListener(<span class="string">'click'</span>, ()=&gt;&#123;alert(<span class="string">'1'</span>)&#125;)</span><br><span class="line"><span class="built_in">document</span>.body.addEventListener(<span class="string">'click'</span>, ()=&gt;&#123;alert(<span class="string">'2'</span>)&#125;)</span><br><span class="line"><span class="built_in">document</span>.body.addEventListener(<span class="string">'click'</span>, ()=&gt;&#123;alert(<span class="string">'3'</span>)&#125;)</span><br><span class="line"><span class="built_in">document</span>.body.click();</span><br></pre></td></tr></table></figure></p>
+<h2 id="实现一个简单的发布者订阅者"><a href="#实现一个简单的发布者订阅者" class="headerlink" title="实现一个简单的发布者订阅者"></a>实现一个简单的发布者订阅者</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EventEmitter</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(events = new Map()) &#123;</span><br><span class="line">    <span class="keyword">this</span>._events = events</span><br><span class="line">  &#125;</span><br><span class="line">  subscribe(event, handler) &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>._events.has(event)) &#123;</span><br><span class="line">      <span class="keyword">this</span>._events.set(event, <span class="keyword">this</span>._events.get(event).concat(handler))</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>._events.set(event, [handler])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  dispatch(event) &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>._events.has(event)) &#123;</span><br><span class="line">      <span class="keyword">const</span> handlers = <span class="keyword">this</span>._events.get(event);</span><br><span class="line">      handlers.forEach(<span class="function"><span class="params">element</span> =&gt;</span> &#123;</span><br><span class="line">        element()</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> event1 = <span class="keyword">new</span> EventEmitter();</span><br><span class="line">event1.subscribe(<span class="string">'learning'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`I am learning`</span>)</span><br><span class="line">&#125;)</span><br><span class="line">event1.subscribe(<span class="string">'watching'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`I am watching`</span>)</span><br><span class="line">&#125;)</span><br><span class="line">event1.dispatch(<span class="string">'learning'</span>);</span><br></pre></td></tr></table></figure>
+<p>有时候，我们也许需要取消订阅事件的功能, 增加取消订阅事件unsubscribe方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">unsubscribe(event, handler) &#123;</span><br><span class="line">	<span class="keyword">let</span> handlers = <span class="keyword">this</span>._events.has(event)</span><br><span class="line">	<span class="keyword">if</span>(handlers) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(handler) &#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">let</span> l= handlers.length <span class="number">-1</span>; l&gt;<span class="number">0</span>; l--) &#123;</span><br><span class="line">		<span class="keyword">let</span> _handler = handlers[l];</span><br><span class="line">		<span class="keyword">if</span>(_handler === handler) handlers.splice(l,<span class="number">1</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="keyword">else</span> &#123;<span class="comment">//没有传入回调函数 删除事件对应所有函数</span></span><br><span class="line">		handlers = []</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实际例子"><a href="#实际例子" class="headerlink" title="实际例子"></a>实际例子</h2><p>组件间通信<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=<span class="string">"btn"</span>&gt;&lt;/button&gt;</span><br><span class="line">&lt;div id=<span class="string">"msg"</span>&gt; &lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> count = <span class="number">0</span>,</span><br><span class="line">    oBtn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);</span><br><span class="line">  oBtn.onClick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    event.dispatch(<span class="string">'add'</span>, count++)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br><span class="line"><span class="keyword">let</span> b = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> oDiv = <span class="built_in">document</span>.getElementById(<span class="string">'msg'</span>)</span><br><span class="line">  msg.subscribe(<span class="string">'add'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">count</span>) </span>&#123;</span><br><span class="line">    oDiv.innerHTML = count</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure></p>
+<p>这也是react 组件间通信的一种方式，但是模块之间如果用了太多的全局发布—订阅模式来通信，那 么模块与模块之间的联系就被隐藏到了背后。我们最终会搞不清楚消息来自哪个模块，或者消息 会流向哪些模块，这又会给我们的维护带来一些麻烦</p>
+<h2 id="必须先订阅再发布吗？"><a href="#必须先订阅再发布吗？" class="headerlink" title="必须先订阅再发布吗？"></a>必须先订阅再发布吗？</h2><p>我们了解到的订阅发布模式，都是订阅者先订阅一个消息，随后才能接受到发布者发布的消息。如果把顺序反过来，先发布再订阅，那么先发布的消息将不会得到响应处理。</p>
+<p>在某些情况下，我们需要先将这条消息保存下来，等到有对象来订阅它的时候，再重新把消 息发布给订阅者。就如同 QQ 中的离线消息一样，离线消息被保存在服务器中，接收人下次登录 上线之后，可以重新收到这条消息。</p>
+<p>为了满足这个需求，我们要建立一个存放离线事件的堆栈，当事件发布的时候，如果此时还 没有订阅者来订阅这个事件，我们暂时把发布事件的动作包裹在一个函数里，这些包装函数将被 存入堆栈中，等到终于有对象来订阅此事件的时候，我们将遍历堆栈并且依次执行这些包装函数， 也就是重新发布里面的事件。当然离线事件的生命周期只有一次，就像 QQ 的未读消息只会被重 新阅读一次，所以刚才的操作我们只能进行一次。</p>
+<h2 id="全局事件命名冲突："><a href="#全局事件命名冲突：" class="headerlink" title="全局事件命名冲突："></a>全局事件命名冲突：</h2><p>全局的发布—订阅对象里只有一个 clinetList 来存放消息名和回调函数，大家都通过它来订 阅和发布各种消息，久而久之，难免会出现事件名冲突的情况，所以我们还可以给 Event 对象提 供创建命名空间的功能。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>发布—订阅模式的优点非常明显，一为时间上的解耦，二为对象之间的解耦。它的应用非常 广泛，既可以用在异步编程中，也可以帮助我们完成更松耦合的代码编写。发布—订阅模式还可 以用来帮助实现一些别的设计模式，比如中介者模式。从架构上来看，无论是 MVC 还是 MVVM， 都少不了发布—订阅模式的参与，而且 JavaScript 本身也是一门基于事件驱动的语言。</p>
+<p>当然，发布—订阅模式也不是完全没有缺点。创建订阅者本身要消耗一定的时间和内存，而 且当你订阅一个消息后，也许此消息最后都未发生，但这个订阅者会始终存在于内存中。另外， 发布—订阅模式虽然可以弱化对象之间的联系，但如果过度使用的话，对象和对象之间的必要联 系也将被深埋在背后，会导致程序难以跟踪维护和理解。特别是有多个发布者和订阅者嵌套到一 起的时候，要跟踪一个 bug 不是件轻松的事情。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -197,46 +238,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://wty521.github.io/2018/04/11/observer/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/12/hello-world/" class="archive-article-date">
-  	<time datetime="2017-10-12T08:07:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/12/hello/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">一些关于js</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/12/hello-world/">Hello World</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -259,8 +360,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

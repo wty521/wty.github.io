@@ -154,6 +154,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-observer" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/11/observer/">订阅发布模式</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/11/observer/" class="archive-article-date">
+  	<time datetime="2018-04-11T08:25:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="订阅发布模式"><a href="#订阅发布模式" class="headerlink" title="订阅发布模式"></a>订阅发布模式</h1><hr>
+<p>最近再学node相关.. events模块 EventEmitter类 核心就是 事件触发与事件监听功能的封装，还记得react组件通信的时候也有一个订阅发布的实现（不过不推荐),然后我就看到订阅发布者模式..</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>定义：发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状 态发生改变时，所有依赖于它的对象都将得到通知。在 JavaScript 开发中，我们一般用事件模型 来替代传统的发布—订阅模式。</p>
+<h2 id="我们都使用过观察者模式"><a href="#我们都使用过观察者模式" class="headerlink" title="我们都使用过观察者模式"></a>我们都使用过观察者模式</h2><p>如果我们在dom节点绑定过事件，那么就使用过订阅发布者模式。一个简单的例子<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.body.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="string">'click'</span>)</span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br><span class="line"><span class="built_in">document</span>.body.click();</span><br></pre></td></tr></table></figure></p>
+<p>订阅document.body上的click事件，当点击事件发生，就会发布这个消息。<br>
+        
+          <a class="article-more-a" href="/2018/04/11/observer/#more">true >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">wty</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/11/observer/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -399,10 +483,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">王田宇</a>
-              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">wty</a>
